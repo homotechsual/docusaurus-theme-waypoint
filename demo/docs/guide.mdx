@@ -1,0 +1,38 @@
+---
+id: guide
+title: Waypoint guide
+waypoint: true
+---
+
+import Checklist from '@theme/Waypoint/Checklist';
+
+This demo guide covers the package's main reader interactions.
+
+<a href="#configure">Jump directly to Configure</a>
+
+## Install
+
+Install the package before configuring your site.
+
+<div className="demo-wrapper">
+  <h2 id="wrapped-step">Wrapped step</h2>
+  <p>This heading starts a step because the demo names its wrapper selector.</p>
+</div>
+
+## Configure
+
+Set the `waypoint` theme configuration and opt a document in with front matter.
+
+## Finish
+
+Check off each item to track your progress.
+
+<Checklist
+  id="demo-guide"
+  items={[
+    {text: 'Install the package', step: 'install'},
+    {text: 'Review the wrapped step', step: 'wrapped-step'},
+    {text: 'Configure the theme', step: 'configure'},
+    {text: 'Finish the guide', step: 'finish'},
+  ]}
+/>

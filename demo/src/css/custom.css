@@ -1,0 +1,4 @@
+.demo-wrapper {
+  border-inline-start: 2px solid var(--ifm-color-primary);
+  padding-inline-start: 1rem;
+}

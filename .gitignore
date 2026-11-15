@@ -1,0 +1,9 @@
+node_modules/
+lib/
+.yarn/cache/
+.yarn/install-state.gz
+*.tgz
+demo/build/
+demo/.docusaurus/
+test-results/
+playwright-report/
