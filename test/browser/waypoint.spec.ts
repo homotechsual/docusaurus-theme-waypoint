@@ -42,7 +42,9 @@ test('jump menu and links reveal the selected step and update the hash', async (
 test('checklist items move into their steps and retain their state', async ({page}) => {
   await page.getByRole('button', {name: 'One step at a time'}).click();
   await page.getByRole('combobox', {name: 'Jump to a step'}).selectOption({label: 'Install'});
-  await page.getByRole('checkbox', {name: 'Done: Install the package'}).check();
+  const doneCheckbox = page.getByRole('checkbox', {name: 'Done: Install the package'});
+  await doneCheckbox.click();
+  await expect(doneCheckbox).toBeChecked();
 
   await page.getByRole('button', {name: 'Whole guide'}).click();
   await expect(page.getByRole('checkbox', {name: 'Install the package'})).toBeChecked();

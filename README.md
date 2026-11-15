@@ -157,6 +157,12 @@ yarn test
 The demo site in `demo/` exercises a guide with custom wrappers and a checklist. Browser tests use Microsoft Edge
 through Playwright. CI builds the package and demo, runs the unit and browser tests, and checks TypeScript.
 
+The demo is configured for `https://waypoint.docusaurus.homotechsual.dev/`. The Deploy Demo workflow publishes to the
+Cloudflare Pages project `docusaurus-waypoint` on pushes to `main` and creates previews for pull requests from this
+repository. Configure the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` GitHub Actions secrets, then add the
+custom domain in Cloudflare Pages and configure its DNS. Fork pull requests do not deploy because they cannot safely
+access the deployment secrets.
+
 The package is licensed under Apache-2.0, matching the other Docusaurus packages maintained alongside it.
 
 ## Publishing
