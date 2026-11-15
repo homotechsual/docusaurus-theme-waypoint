@@ -40,7 +40,8 @@ const config: Config = {
         {to: '/docs/guide', label: 'Demo guide', position: 'left'},
         {type: 'docSidebar', sidebarId: 'docs', label: 'Docs', position: 'left'},
         {href: 'https://docs.homotechsual.dev/', label: 'Other Projects', position: 'right'},
-        {href: 'https://github.com/homotechsual/docusaurus-theme-waypoint', label: 'GitHub', position: 'right', className: 'github-link'},
+        {href: 'https://github.com/sponsors/homotechsual', html: '<span class="navbar__action-label">Sponsor</span>', 'aria-label': 'Sponsor', title: 'Sponsor', position: 'right', className: 'sponsorship-link'},
+        {href: 'https://github.com/homotechsual/docusaurus-theme-waypoint', html: '<span class="navbar__action-label">GitHub</span>', 'aria-label': 'GitHub', title: 'GitHub', position: 'right', className: 'github-link'},
       ],
     },
     footer: {

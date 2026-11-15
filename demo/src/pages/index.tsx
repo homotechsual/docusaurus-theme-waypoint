@@ -59,6 +59,14 @@ export default function Home(): React.JSX.Element {
             </div>
           </div>
         </section>
+        <section className="container padding-bottom--xl">
+          <Heading as="h2">Inspired by dotMARC</Heading>
+          <p>
+            Waypoint grew out of the documentation for dotMARC, a self-hosted DMARC monitoring tool.
+            See its deployment guide for a more complex, real-world example with nested steps and checklists.
+          </p>
+          <Link to="https://dotmarc.app/docs/deploy-with-docker/">Explore the dotMARC deployment guide →</Link>
+        </section>
       </main>
     </Layout>
   );
