@@ -3,6 +3,7 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import {translate} from '@docusaurus/Translate';
 import styles from './styles.module.css';
 import {useWaypointOptions} from './options';
+import {resolveHeadingLevels} from './headingLevels';
 import {
   buildSteps,
   findStepForHash,
@@ -26,6 +27,11 @@ export default function Waypoint({children}: {children: React.ReactNode}): React
   const options = useWaypointOptions();
   const enabled = (frontMatter as Record<string, unknown>)[options.frontMatterKey] === true;
   const permalink = metadata.permalink;
+  const configuredHeadingLevels = (frontMatter as Record<string, unknown>).waypointHeadingLevels;
+  const headingLevels = useMemo(
+    () => enabled ? resolveHeadingLevels(configuredHeadingLevels, options.headingLevels, permalink) : options.headingLevels,
+    [enabled, configuredHeadingLevels, options.headingLevels, permalink],
+  );
 
   const modeKey = `${options.storageNamespace}-view-mode`;
   const hintKey = `${options.storageNamespace}-step-mode-hint`;
@@ -134,7 +140,7 @@ export default function Waypoint({children}: {children: React.ReactNode}): React
     });
     const wrapperSelector = options.wrapperSelectors.join(', ');
     const dom = buildSteps(articles, {
-      headingLevels: options.headingLevels,
+      headingLevels,
       overviewTitle,
       isWrapper: wrapperSelector ? (node) => node.matches(wrapperSelector) : undefined,
     });
@@ -150,7 +156,7 @@ export default function Waypoint({children}: {children: React.ReactNode}): React
     return () => {
       showEverything(stepsRef.current);
     };
-  }, [enabled, mode, stepKey, options.headingLevels, options.articleSelector, options.wrapperSelectors, reveal]);
+  }, [enabled, mode, stepKey, headingLevels, options.articleSelector, options.wrapperSelectors, reveal]);
 
   // A link, or the table of contents, that points at a step which is hidden should take you there.
   useEffect(() => {

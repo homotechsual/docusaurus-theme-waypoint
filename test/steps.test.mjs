@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {buildSteps, findStepForHash, showEverything, showOnly} from '../theme/Waypoint/steps.ts';
+import {resolveHeadingLevels} from '../theme/Waypoint/headingLevels.ts';
 
 function element(tagName, {id = '', text = '', hidden = false, className = '', children = []} = {}) {
   const node = {
@@ -63,6 +64,30 @@ test('only the configured heading levels start steps', () => {
   );
   assert.deepEqual(steps.map((step) => step.id), ['a']);
   assert.equal(steps[0].nodes.length, 3);
+});
+
+test('per-page heading levels override the site default and reject invalid values', () => {
+  const defaults = [2, 3];
+  assert.equal(resolveHeadingLevels(undefined, defaults, '/guide'), defaults);
+  assert.deepEqual(resolveHeadingLevels([2], defaults, '/guide'), [2]);
+  for (const invalid of [null, [], [1], [7], [2, '3'], '2', [2.5]]) {
+    assert.throws(() => resolveHeadingLevels(invalid, defaults, '/guide'), /Invalid waypointHeadingLevels in \/guide/);
+  }
+});
+
+test('an h2-only step includes subheadings, and hashes into them reveal their parent', () => {
+  const h3 = element('H3', {id: 'subheading', text: 'Subheading'});
+  const steps = build(
+    article(element('H2', {id: 'parent', text: 'Parent'}), h3, element('P'), element('H2', {id: 'next', text: 'Next'})),
+    {headingLevels: [2]},
+  );
+  assert.deepEqual(steps.map((step) => [step.id, step.nodes.length]), [['parent', 3], ['next', 1]]);
+  assert.equal(findStepForHash(steps, '#subheading', (id) => id === 'subheading' ? h3 : null), 0);
+});
+
+test('adjacent step headings leave the first step with only its heading', () => {
+  const steps = build(article(element('H2', {id: 'parent'}), element('H3', {id: 'child'}), element('P')));
+  assert.deepEqual(steps.map((step) => [step.id, step.nodes.length]), [['parent', 1], ['child', 2]]);
 });
 
 test('sub-steps are the levels below the highest one that starts steps', () => {

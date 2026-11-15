@@ -32,6 +32,32 @@ export default {
 | `articleSelector` | `'.theme-doc-markdown'` | Selector, comma-separated selectors or array of selectors for article parents. |
 | `wrapperSelectors` | `[]` | Selectors for wrappers whose children should be treated as article content. |
 
+## Choose step heading levels
+
+Set `headingLevels: [2]` to make H2 headings start steps while H3 through H6 headings and their content stay in the
+same parent step. The setting applies to all opted-in guides unless a document overrides it in its front matter:
+
+```md
+---
+waypoint: true
+waypointHeadingLevels: [2]
+---
+```
+
+`waypointHeadingLevels` accepts a non-empty array of heading levels from 2 through 6. It replaces the site-wide
+`headingLevels` for that document, even when you use a custom `frontMatterKey`. Other headings do not start steps;
+they stay with the preceding step, or in the Overview before the first step. Try the
+[parent steps example](/docs/parent-steps). Checklist items must reference a heading that starts a step: with `[2]`,
+use the parent H2 ID rather than an H3 ID.
+
+:::caution Heading-only steps
+
+With the default `[2, 3]`, an H2 immediately followed by an H3 creates an H2 step containing only its heading,
+followed by a separate H3 step. Add content between those headings, or use `[2]` to keep H3 subsections in the
+parent step. The same applies to any adjacent headings whose levels both start steps.
+
+:::
+
 ## Custom layouts and wrappers
 
 Several article parents are read as one guide in page order. List wrappers to include their direct children in the

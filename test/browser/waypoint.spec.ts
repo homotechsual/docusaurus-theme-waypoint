@@ -68,6 +68,24 @@ test('switches between the whole guide and one step at a time', async ({page}) =
   await expect(page.getByRole('heading', {name: 'Finish'})).toBeVisible();
 });
 
+test('a document can group subheadings into parent steps and link directly to them', async ({page}) => {
+  await page.goto('/docs/parent-steps');
+  await page.getByRole('button', {name: 'One step at a time'}).click();
+  const jump = page.getByRole('combobox', {name: 'Jump to a step'});
+  await expect(jump.locator('option')).toHaveText(['Overview', 'Prepare', 'Deploy']);
+  await jump.selectOption({label: 'Prepare'});
+  await expect(page.getByRole('heading', {name: 'Check prerequisites'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Install dependencies'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Start the service'})).toBeHidden();
+
+  await page.goto('/docs/parent-steps#start-the-service');
+  await expect(page.getByRole('heading', {name: 'Start the service'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Check prerequisites'})).toBeHidden();
+  await expect(page.getByRole('combobox', {name: 'Jump to a step'})).toHaveValue('2');
+  await page.getByRole('button', {name: 'Whole guide'}).click();
+  await expect(page.getByRole('heading', {name: 'Check prerequisites'})).toBeVisible();
+});
+
 test('jump menu and links reveal the selected step and update the hash', async ({page}) => {
   await page.getByRole('button', {name: 'One step at a time'}).click();
 

@@ -8,8 +8,7 @@ It is a single page of content shown two ways, not two versions of it. In step m
 article into groups at each heading and hides all but the current one. Switching back to *Whole guide* restores the
 page exactly. Without JavaScript the full page is shown.
 
-This repository is the source of truth for `@homotechsual/docusaurus-theme-waypoint`. The copy currently used by
-dotMARC can be replaced with the published package.
+This repository is the source of truth for `@homotechsual/docusaurus-theme-waypoint`.
 
 ## Use it
 
@@ -47,6 +46,20 @@ Intro text is the first step ("Overview").
 
 Every heading at the configured levels is a step. A heading at a level below the highest one is shown indented in the
 jump menu.
+
+Set `headingLevels: [2]` site-wide to keep H3 and lower headings in their parent H2 step. To override the site-wide
+setting for one opted-in document, add a non-empty array of levels from 2 through 6 to its front matter:
+
+```yaml
+waypoint: true
+waypointHeadingLevels: [2]
+```
+
+The override is named `waypointHeadingLevels` even if `frontMatterKey` is customised. Headings at other levels remain
+in the preceding step, or in the overview before the first step. With the default `[2, 3]`, an H2 immediately
+followed by an H3 produces an H2 step containing only its heading; add content between them or use `[2]` to include
+the H3 in its parent step. Checklist items must reference an actual step heading, so with `[2]` use the parent H2 ID
+instead of an H3 ID.
 
 ## Colours
 
