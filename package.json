@@ -1,6 +1,6 @@
 {
   "name": "@homotechsual/docusaurus-theme-waypoint",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Read long Docusaurus guides one step at a time. Adds a Whole guide / One step at a time switch to docs that opt in.",
   "main": "index.js",
   "types": "types.d.ts",
