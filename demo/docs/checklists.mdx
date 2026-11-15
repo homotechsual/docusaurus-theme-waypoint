@@ -1,0 +1,50 @@
+---
+title: Checklists
+sidebar_position: 3
+---
+
+# Checklists
+
+Waypoint includes an optional checklist component. Its state is saved in the reader's browser under the configured
+`storageNamespace`. Try it in the [demo guide](/docs/guide).
+
+```mdx
+import Checklist from '@theme/Waypoint/Checklist';
+
+<Checklist
+  id="install-guide"
+  items={[
+    {text: 'Installed the CLI', step: 'install'},
+    {text: 'Signed in', step: 'sign-in'},
+  ]}
+/>
+```
+
+When every item names a heading ID, the full list is replaced in step mode by a Done tick for each matching step.
+The whole-guide list and step ticks share the same state. Plain string items are also supported, but a list containing
+one or more strings stays in place in both views.
+
+Keep the checklist `id` unique and stable: changing it resets saved ticks. Step IDs must match the heading IDs, so
+update them if a heading changes. The optional `onProgress(completed, total)` callback reports progress after saved
+state is read and when ticks change.
+
+## Custom checklists
+
+Use the tasks hook to register your own checklist items with the current guide:
+
+```tsx
+import {useEffect} from 'react';
+import {useWaypointTasks, HIDE_IN_STEPS_ATTRIBUTE} from '@theme/Waypoint/tasks';
+
+const registry = useWaypointTasks(); // null outside a Waypoint guide
+
+useEffect(() => {
+  registry?.register('my-checklist', [
+    {stepId: 'install', label: 'Installed it', checked, toggle},
+  ]);
+  return () => registry?.register('my-checklist', null);
+}, [registry, checked, toggle]);
+
+// Put this attribute on the checklist root to hide it in step mode.
+<div {...{[HIDE_IN_STEPS_ATTRIBUTE]: ''}}>My checklist</div>
+```

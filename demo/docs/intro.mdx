@@ -1,0 +1,56 @@
+---
+title: Getting Started
+sidebar_position: 1
+---
+
+# Getting Started
+
+[![NPM Version](https://img.shields.io/npm/v/%40homotechsual%2Fdocusaurus-theme-waypoint?style=for-the-badge)](https://www.npmjs.com/package/@homotechsual/docusaurus-theme-waypoint)
+[![NPM Downloads](https://img.shields.io/npm/dy/%40homotechsual%2Fdocusaurus-theme-waypoint?style=for-the-badge)](https://www.npmjs.com/package/@homotechsual/docusaurus-theme-waypoint)
+
+**Waypoint for Docusaurus** helps readers work through long docs one step at a time. Readers choose between the
+whole guide and a focused step view, with navigation and optional checklists.
+
+Try the [demo guide](/docs/guide) to see it in action.
+
+## Installation
+
+```bash npm2yarn
+npm install @homotechsual/docusaurus-theme-waypoint
+```
+
+Waypoint is a theme for Docusaurus 3. Add it to the `themes` list in your site's configuration:
+
+```ts
+// docusaurus.config.ts
+export default {
+  themes: ['@homotechsual/docusaurus-theme-waypoint'],
+};
+```
+
+## Opt in a guide
+
+Add `waypoint: true` to a doc's front matter:
+
+```md
+---
+waypoint: true
+---
+
+# My guide
+
+An introduction appears as the Overview step.
+
+## Install
+
+Install the prerequisites.
+
+## Configure
+
+Configure your project.
+```
+
+By default, level 2 and level 3 headings start new steps. The reader can switch back to the full page at any time.
+Docs without the front matter flag are unchanged. Without JavaScript, the complete guide remains visible.
+
+See [Configuration](/docs/configuration) to adjust the theme, or [Checklists](/docs/checklists) to add progress ticks.

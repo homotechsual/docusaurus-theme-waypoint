@@ -1,0 +1,62 @@
+---
+title: Configuration
+sidebar_position: 2
+---
+
+# Configuration
+
+Set `themeConfig.waypoint` in `docusaurus.config.ts`. Every option is optional:
+
+```ts
+export default {
+  themes: ['@homotechsual/docusaurus-theme-waypoint'],
+  themeConfig: {
+    waypoint: {
+      frontMatterKey: 'waypoint',
+      headingLevels: [2, 3],
+      storageNamespace: 'waypoint',
+      showIntroHint: true,
+      articleSelector: '.theme-doc-markdown',
+      wrapperSelectors: [],
+    },
+  },
+};
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `frontMatterKey` | `'waypoint'` | Docs with this front matter key set to `true` get the switch. |
+| `headingLevels` | `[2, 3]` | Heading levels that begin a step. Supported values are 2 through 6. |
+| `storageNamespace` | `'waypoint'` | Prefix for the reader's saved view, step and checklist state. |
+| `showIntroHint` | `true` | Show a dismissible introduction to first-time visitors. |
+| `articleSelector` | `'.theme-doc-markdown'` | Selector, comma-separated selectors or array of selectors for article parents. |
+| `wrapperSelectors` | `[]` | Selectors for wrappers whose children should be treated as article content. |
+
+## Custom layouts and wrappers
+
+Several article parents are read as one guide in page order. List wrappers to include their direct children in the
+step sequence. Wrappers can also be nested.
+
+```ts
+waypoint: {
+  articleSelector: ['.theme-doc-markdown', '.my-extra-parent'],
+  wrapperSelectors: ['.my-section', '.my-callout-group'],
+},
+```
+
+Wrappers themselves remain visible, so their own borders or padding can leave an empty box on other steps. Headings
+inside unlisted wrappers, tabs or details do not start steps.
+
+## Progress bar background
+
+Match the sticky bar to your page background with a CSS variable:
+
+```css
+:root {
+  --waypoint-bar-background: #f7f8fa;
+}
+
+[data-theme='dark'] {
+  --waypoint-bar-background: #111827;
+}
+```

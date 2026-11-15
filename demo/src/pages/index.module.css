@@ -1,0 +1,36 @@
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+html[data-theme='dark'] .hero {
+  --ifm-heading-color: #263141;
+}
+
+html[data-theme='dark'] .docsButton {
+  color: #263141;
+  border-color: #263141;
+}
+
+html[data-theme='dark'] .docsButton:hover {
+  background: #263141;
+  color: #ffffff;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}

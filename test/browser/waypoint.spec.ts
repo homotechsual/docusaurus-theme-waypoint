@@ -1,5 +1,20 @@
 import {expect, test} from '@playwright/test';
 
+test('homepage links to the demo and documentation', async ({page}) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', {name: 'Waypoint for Docusaurus', level: 1})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'One guide, two views'})).toBeVisible();
+  await page.getByRole('link', {name: 'Read the Docs'}).click();
+  await expect(page).toHaveURL(/\/docs\/intro\/?$/);
+  await expect(page.getByRole('heading', {name: 'Installation'})).toBeVisible();
+  await expect(page.getByRole('group', {name: 'How to read this guide'})).toHaveCount(0);
+  await expect(page.getByRole('tab', {name: 'npm', exact: true})).toBeVisible();
+  await page.getByRole('tab', {name: 'yarn'}).click();
+  await expect(page.getByText('yarn add @homotechsual/docusaurus-theme-waypoint')).toBeVisible();
+  await page.getByRole('link', {name: 'Demo guide'}).first().click();
+  await expect(page).toHaveURL(/\/docs\/guide\/?$/);
+});
+
 test.beforeEach(async ({page}) => {
   await page.goto('/docs/guide');
   await page.evaluate(() => localStorage.clear());

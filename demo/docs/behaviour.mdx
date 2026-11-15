@@ -1,0 +1,25 @@
+---
+title: Reader experience
+sidebar_position: 4
+---
+
+# Reader experience
+
+In step mode, headings at the configured levels divide the rendered article into steps. Content before the first
+heading is an Overview step. A jump menu, progress bar, Back and Next buttons and screen-reader announcements help
+readers navigate.
+
+Links to headings and elements inside hidden steps reveal the right step. Waypoint saves the chosen mode and step in
+the reader's browser, so a return visit can resume where they left off.
+
+## Translations
+
+Visible Waypoint text uses Docusaurus translation IDs beginning with `theme.waypoint.`. Run
+`docusaurus write-translations` in your site to generate the translation files.
+
+## Limits
+
+- Waypoint supports docs pages and relies on Docusaurus 3's `.theme-doc-markdown` element by default.
+- The side table-of-contents highlight does not follow the current step.
+- Printing prints the visible step. Switch to Whole guide first to print the full page.
+- If a checklist step's heading ID changes, update the checklist item to match it.

@@ -2585,6 +2585,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@docusaurus/remark-plugin-npm2yarn@npm:^3.10.2":
+  version: 3.10.2
+  resolution: "@docusaurus/remark-plugin-npm2yarn@npm:3.10.2"
+  dependencies:
+    mdast-util-mdx: "npm:^3.0.0"
+    npm-to-yarn: "npm:^3.0.0"
+    tslib: "npm:^2.6.0"
+    unified: "npm:^11.0.3"
+    unist-util-visit: "npm:^5.0.0"
+  checksum: 10c0/323c32e065caf35b7cdbbba4b6602e5e23f8fc857bdc39cd390eca8865bb807222df39f158269a396e2bc91b73fcb88023d9e56c519e69213673fb496a5fd97b
+  languageName: node
+  linkType: hard
+
 "@docusaurus/theme-classic@npm:3.10.2, @docusaurus/theme-classic@npm:^3.10.2":
   version: 3.10.2
   resolution: "@docusaurus/theme-classic@npm:3.10.2"
@@ -2738,7 +2751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils@npm:3.10.2":
+"@docusaurus/utils@npm:3.10.2, @docusaurus/utils@npm:^3.10.2":
   version: 3.10.2
   resolution: "@docusaurus/utils@npm:3.10.2"
   dependencies:
@@ -9122,6 +9135,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"npm-to-yarn@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "npm-to-yarn@npm:3.2.0"
+  checksum: 10c0/b8e8a2bffa25ca436bbed202bbe13f05c2be85e72a15199f84923c2438e549f112c0da64071ce5be120859e798c3a2f5af80dac9ba636b772b980b783fdd5bdf
+  languageName: node
+  linkType: hard
+
 "nprogress@npm:^0.2.0":
   version: 0.2.0
   resolution: "nprogress@npm:0.2.0"
@@ -10408,7 +10428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prism-react-renderer@npm:^2.3.0":
+"prism-react-renderer@npm:^2.3.0, prism-react-renderer@npm:^2.4.1":
   version: 2.4.1
   resolution: "prism-react-renderer@npm:2.4.1"
   dependencies:
@@ -12428,10 +12448,13 @@ __metadata:
     "@docusaurus/core": "npm:^3.10.2"
     "@docusaurus/module-type-aliases": "npm:^3.10.2"
     "@docusaurus/preset-classic": "npm:^3.10.2"
+    "@docusaurus/remark-plugin-npm2yarn": "npm:^3.10.2"
     "@docusaurus/tsconfig": "npm:^3.10.2"
     "@docusaurus/types": "npm:^3.10.2"
+    "@docusaurus/utils": "npm:^3.10.2"
     "@mdx-js/react": "npm:^3.1.1"
     "@types/react": "npm:^19.3.0"
+    prism-react-renderer: "npm:^2.4.1"
     react: "npm:^19.3.1"
     react-dom: "npm:^19.3.1"
     typescript: "npm:^6.0.3"

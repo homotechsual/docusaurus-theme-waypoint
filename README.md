@@ -156,6 +156,8 @@ yarn test
 
 The demo site in `demo/` exercises a guide with custom wrappers and a checklist. Browser tests use Microsoft Edge
 through Playwright. CI builds the package and demo, runs the unit and browser tests, and checks TypeScript.
+The [demo site](https://waypoint.docusaurus.homotechsual.dev/) also provides a getting-started guide and reference
+pages for configuration, checklists and reader behaviour.
 
 The demo is configured for `https://waypoint.docusaurus.homotechsual.dev/`. The Deploy Demo workflow publishes to the
 Cloudflare Pages project `docusaurus-waypoint` on pushes to `main` and creates previews for pull requests from this
