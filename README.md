@@ -8,9 +8,8 @@ It is a single page of content shown two ways, not two versions of it. In step m
 article into groups at each heading and hides all but the current one. Switching back to *Whole guide* restores the
 page exactly. Without JavaScript the full page is shown.
 
-This repository is the source of truth for the package. The package is prepared for its first public release as
-`@homotechsual/docusaurus-theme-waypoint`; the copy currently used by dotMARC can be replaced with this published
-package after the first release.
+This repository is the source of truth for `@homotechsual/docusaurus-theme-waypoint`. The copy currently used by
+dotMARC can be replaced with the published package.
 
 ## Use it
 
