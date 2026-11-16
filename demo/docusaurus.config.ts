@@ -36,10 +36,21 @@ const config: Config = {
   themeConfig: {
     navbar: {
       title: 'Waypoint Theme',
+      logo: {alt: 'Waypoint', src: 'img/favicon.svg'},
       items: [
         {to: '/docs/guide', label: 'Demo guide', position: 'left'},
         {type: 'docSidebar', sidebarId: 'docs', label: 'Docs', position: 'left'},
-        {href: 'https://docs.homotechsual.dev/', label: 'Other Projects', position: 'right'},
+        {
+          label: 'More Projects',
+          position: 'right',
+          items: [
+            {label: 'OpenGraph', href: 'https://og.docusaurus.homotechsual.dev/'},
+            {label: 'FAQs', href: 'https://faqs.docusaurus.homotechsual.dev/'},
+            {label: 'Showcase', href: 'https://showcase.docusaurus.homotechsual.dev/'},
+            {label: 'Plausible', href: 'https://plausible.docusaurus.homotechsual.dev/'},
+            {label: 'All Projects', href: 'https://docs.homotechsual.dev/'},
+          ],
+        },
         {href: 'https://github.com/sponsors/homotechsual', html: '<span class="navbar__action-label">Sponsor</span>', 'aria-label': 'Sponsor', title: 'Sponsor', position: 'right', className: 'sponsorship-link'},
         {href: 'https://github.com/homotechsual/docusaurus-theme-waypoint', html: '<span class="navbar__action-label">GitHub</span>', 'aria-label': 'GitHub', title: 'GitHub', position: 'right', className: 'github-link'},
       ],

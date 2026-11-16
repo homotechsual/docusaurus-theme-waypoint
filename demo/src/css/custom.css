@@ -2,13 +2,13 @@
   --ifm-background-color: #fcfcfc;
   --ifm-button-border-radius: 0.5rem;
   --ifm-code-font-size: 95%;
-  --ifm-color-primary: #a42828;
-  --ifm-color-primary-dark: #9c2626;
-  --ifm-color-primary-darker: #8b2222;
-  --ifm-color-primary-darkest: #731c1c;
-  --ifm-color-primary-light: #ac2a2a;
-  --ifm-color-primary-lighter: #bd2e2e;
-  --ifm-color-primary-lightest: #cf3a3a;
+  --ifm-color-primary: #731c1c;
+  --ifm-color-primary-dark: #681919;
+  --ifm-color-primary-darker: #621818;
+  --ifm-color-primary-darkest: #501414;
+  --ifm-color-primary-light: #7e1f1f;
+  --ifm-color-primary-lighter: #842020;
+  --ifm-color-primary-lightest: #962525;
   --ifm-font-color-base: #333333;
   --ifm-font-color-base-inverse: #fcfcfc;
   --ifm-global-radius: 0.5rem;
@@ -41,6 +41,17 @@ footer {
   --ifm-footer-color: var(--ifm-navbar-link-color);
   --ifm-footer-link-color: var(--ifm-navbar-link-color);
   --ifm-footer-link-hover-color: #f8dbd8;
+}
+
+.button.button--primary:not(.button--outline) {
+  --ifm-button-background-color: #731c1c;
+  --ifm-button-border-color: #731c1c;
+  --ifm-button-color: #fff;
+}
+
+.button.button--primary:not(.button--outline):hover {
+  --ifm-button-background-color: #8b2222;
+  --ifm-button-border-color: #8b2222;
 }
 
 .designedBy {
