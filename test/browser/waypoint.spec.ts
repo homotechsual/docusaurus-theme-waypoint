@@ -68,6 +68,34 @@ test('homepage links to the demo and documentation', async ({page}) => {
   await expect(page).toHaveURL(/\/docs\/guide\/?$/);
 });
 
+test('footer shows the shared attribution and all Docusaurus projects', async ({page}) => {
+  await page.goto('/');
+  const footer = page.locator('footer');
+  await expect(footer).toContainText(`Copyright © ${new Date().getFullYear()} Mikey O'Toole.`);
+  await expect(footer.getByRole('link', {name: /Docusaurus v/})).toHaveAttribute('href', 'https://docusaurus.io');
+  await expect(footer.getByRole('img', {name: 'love'})).toBeVisible();
+  await expect(footer.getByRole('link', {name: 'homotechsual'})).toHaveAttribute('href', 'https://homotechsual.dev');
+
+  const projects = footer.locator('.footer__col').filter({hasText: 'Docusaurus projects'});
+  const sites = [
+    ['OpenGraph', 'og'],
+    ['FAQs', 'faqs'],
+    ['Showcase', 'showcase'],
+    ['Plausible', 'plausible'],
+    ['Waypoint', 'waypoint'],
+  ];
+  await expect(projects.locator('a')).toHaveCount(sites.length);
+  for (const [label, subdomain] of sites) {
+    await expect(projects.getByRole('link', {name: label})).toHaveAttribute(
+      'href',
+      `https://${subdomain}.docusaurus.homotechsual.dev/`,
+    );
+  }
+
+  await page.emulateMedia({reducedMotion: 'reduce'});
+  await expect(footer.getByRole('img', {name: 'love'})).toHaveCSS('animation-name', 'none');
+});
+
 test.beforeEach(async ({page}) => {
   await page.goto('/docs/guide');
   await page.evaluate(() => localStorage.clear());

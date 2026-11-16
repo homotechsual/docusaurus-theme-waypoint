@@ -54,14 +54,24 @@ footer {
   --ifm-button-border-color: #8b2222;
 }
 
+@keyframes heart {
+  0%, 40%, 80%, 100% { transform: scale(1); }
+  20%, 60% { transform: scale(1.15); }
+}
+
 .designedBy {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
 }
 
-.heart {
-  color: var(--ifm-navbar-link-hover-color);
+.designedBy .heart {
+  margin: 0.25rem;
+  animation: heart 1500ms infinite;
+  fill: var(--ifm-navbar-link-hover-color);
+}
+
+.designedBy a {
+  margin-inline-start: 0.25rem;
 }
 
 .sponsorship-link {
@@ -85,6 +95,7 @@ footer {
   20%, 60% { transform: scale(1.15); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .designedBy .heart { animation: none; }
   .sponsorship-link:hover::before { animation: none; }
 }
 @media (max-width: 1359px) {
