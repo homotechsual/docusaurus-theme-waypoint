@@ -95,7 +95,7 @@
 
 .modeButtonActive {
   background: var(--ifm-color-primary);
-  color: var(--ifm-color-white, #fff);
+  color: var(--ifm-font-color-base-inverse);
 }
 
 .count {

@@ -75,6 +75,9 @@ The stuck progress bar should match your page background so it doesn't show up a
 }
 ```
 
+The active mode switch uses `--ifm-font-color-base-inverse` for its text. If you customize the primary color, make sure
+that foreground has at least 4.5:1 contrast against it.
+
 ## Different page structures
 
 By default the theme looks at the children of Docusaurus' `.theme-doc-markdown` element. Two settings cover other

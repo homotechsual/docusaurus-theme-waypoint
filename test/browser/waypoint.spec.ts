@@ -1,5 +1,27 @@
 import {expect, test} from '@playwright/test';
 
+function contrastRatio(foreground: string, background: string) {
+  const luminance = (color: string) => {
+    const channels = color.match(/\d+/g)?.slice(0, 3).map(Number);
+    if (!channels || channels.length !== 3) {
+      throw new Error(`Unexpected computed color: ${color}`);
+    }
+
+    const [red, green, blue] = channels.map((channel) => {
+      const value = channel / 255;
+      return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  };
+
+  const foregroundLuminance = luminance(foreground);
+  const backgroundLuminance = luminance(background);
+  return (
+    (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+    (Math.min(foregroundLuminance, backgroundLuminance) + 0.05)
+  );
+}
+
 test('navbar offers sponsorship and an accessible GitHub icon on desktop and mobile', async ({page}) => {
   for (const viewport of [{width: 1280, height: 800}, {width: 390, height: 844}]) {
     await page.setViewportSize(viewport);
@@ -68,6 +90,20 @@ test('switches between the whole guide and one step at a time', async ({page}) =
   await expect(page.getByRole('heading', {name: 'Finish'})).toBeVisible();
 });
 
+test('active mode switch text meets WCAG AA contrast in light and dark themes', async ({page}) => {
+  const activeButton = page.getByRole('group', {name: 'How to read this guide'}).getByRole('button', {name: 'Whole guide'});
+
+  for (const theme of ['light', 'dark']) {
+    await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+    const colors = await activeButton.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {foreground: style.color, background: style.backgroundColor};
+    });
+
+    expect(contrastRatio(colors.foreground, colors.background)).toBeGreaterThanOrEqual(4.5);
+  }
+});
+
 test('a document can group subheadings into parent steps and link directly to them', async ({page}) => {
   await page.goto('/docs/parent-steps');
   await page.getByRole('button', {name: 'One step at a time'}).click();
@@ -84,6 +120,22 @@ test('a document can group subheadings into parent steps and link directly to th
   await expect(page.getByRole('combobox', {name: 'Jump to a step'})).toHaveValue('2');
   await page.getByRole('button', {name: 'Whole guide'}).click();
   await expect(page.getByRole('heading', {name: 'Check prerequisites'})).toBeVisible();
+});
+
+test('a document can opt into heading levels that start their own steps', async ({page}) => {
+  await page.goto('/docs/heading-levels');
+  await page.getByRole('button', {name: 'One step at a time'}).click();
+
+  const jump = page.getByRole('combobox', {name: 'Jump to a step'});
+  await expect(jump.locator('option')).toHaveText([
+    'Overview',
+    'Prepare',
+    'Check prerequisites',
+    'Deploy',
+    'Start the service',
+  ]);
+  await jump.selectOption({label: 'Check prerequisites'});
+  await expect(page.getByRole('heading', {name: 'Verify the setup'})).toBeVisible();
 });
 
 test('jump menu and links reveal the selected step and update the hash', async ({page}) => {
