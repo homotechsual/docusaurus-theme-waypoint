@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import packageInfo from '../../../package.json';
 import styles from './index.module.css';
 
 const features = [
@@ -42,6 +43,11 @@ export default function Home(): React.JSX.Element {
               Read the Docs
             </Link>
           </div>
+          <p className="padding-top--md margin-bottom--none">
+            <Link className="button button--outline button--secondary button--sm" to="https://github.com/homotechsual/docusaurus-theme-waypoint/releases/latest">
+              Current release: v{packageInfo.version}
+            </Link>
+          </p>
         </div>
       </header>
       <main>

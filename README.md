@@ -175,6 +175,12 @@ through Playwright. CI builds the package and demo, runs the unit and browser te
 The [demo site](https://waypoint.docusaurus.homotechsual.dev/) also provides a getting-started guide and reference
 pages for configuration, checklists and reader behaviour.
 
+The demo homepage displays the package version and links to the current release.
+Production builds generate OpenGraph images for documentation and pages using
+`@homotechsual/docusaurus-og` and locally installed Inter fonts. Plausible tracking
+is configured for `waypoint.docusaurus.homotechsual.dev`; both integrations are
+demo-only and are not enabled automatically for theme consumers.
+
 The demo is configured for `https://waypoint.docusaurus.homotechsual.dev/`. The Deploy Demo workflow publishes to the
 Cloudflare Pages project `docusaurus-waypoint` on pushes to `main` and creates previews for pull requests from this
 repository. Configure the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` GitHub Actions secrets, then add the

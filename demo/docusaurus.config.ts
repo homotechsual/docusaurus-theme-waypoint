@@ -3,6 +3,8 @@ import type {Config} from '@docusaurus/types';
 import {DOCUSAURUS_VERSION} from '@docusaurus/utils';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import {themes as prismThemes} from 'prism-react-renderer';
+import plausiblePlugin, {type PluginOptions as PlausibleOptions} from '@homotechsual/docusaurus-plugin-plausible';
+import {renderPage} from './imageRenderers.js';
 
 const config: Config = {
   title: 'Waypoint for Docusaurus',
@@ -11,6 +13,25 @@ const config: Config = {
   url: 'https://waypoint.docusaurus.homotechsual.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
+  plugins: [
+    [
+      '@homotechsual/docusaurus-og',
+      {
+        path: 'og-images',
+        imageRenderers: {
+          'docusaurus-plugin-content-docs': renderPage,
+          'docusaurus-plugin-content-pages': renderPage,
+        },
+      },
+    ],
+    [
+      plausiblePlugin,
+      {
+        domain: 'waypoint.docusaurus.homotechsual.dev',
+        outboundLinks: true,
+      } satisfies PlausibleOptions,
+    ],
+  ],
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'throw',
