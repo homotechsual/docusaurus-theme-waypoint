@@ -14,6 +14,7 @@ const config: Config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   plugins: [
+    './plugins/docsense.cjs',
     [
       '@homotechsual/docusaurus-og',
       {

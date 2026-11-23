@@ -7,3 +7,6 @@ demo/build/
 demo/.docusaurus/
 test-results/
 playwright-report/
+
+# Generated DocSense search indexes
+/demo/static/docsense/
